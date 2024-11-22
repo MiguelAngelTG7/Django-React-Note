@@ -71,14 +71,14 @@ function Home() {
     return (
         <div>
             <div>
-                <h2>Notes</h2>
+                <h2>Notas</h2>
                 {notes.map((note) => (
                     <Note note={note} onDelete={deleteNote} onEdit={startEditing} key={note.id} />
                 ))}
             </div>
-            <h2>{editingNote ? "Edit Note" : "Create a Note"}</h2>
+            <h2>{editingNote ? "Editar una nota" : "Crear una nota"}</h2>
             <form onSubmit={createOrUpdateNote}>
-                <label htmlFor="title">Title:</label>
+                <label htmlFor="title">Título:</label>
                 <br />
                 <input
                     type="text"
@@ -88,7 +88,7 @@ function Home() {
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
                 />
-                <label htmlFor="content">Content:</label>
+                <label htmlFor="content">Contenido:</label>
                 <br />
                 <textarea
                     id="content"
@@ -98,7 +98,7 @@ function Home() {
                     onChange={(e) => setContent(e.target.value)}
                 ></textarea>
                 <br />
-                <input type="submit" value={editingNote ? "Update" : "Submit"}></input>
+                <input type="submit" value={editingNote ? "Actualizar nota" : "Crear nota"}></input>
                 {editingNote && (
                     <button
                         type="button"
@@ -108,7 +108,7 @@ function Home() {
                             setContent("");
                         }}
                     >
-                        Cancel
+                        Cancelar
                     </button>
                 )}
             </form>

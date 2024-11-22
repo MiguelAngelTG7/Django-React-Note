@@ -10,10 +10,10 @@ function Note({ note, onDelete, onEdit }) {
             <p className="note-content">{note.content}</p>
             <p className="note-date">{formattedDate}</p>
             <button className="delete-button" onClick={() => onDelete(note.id)}>
-                Delete
+                Eliminar
             </button>
             <button className="edit-button" onClick={() => onEdit(note)}>
-                Edit
+                Editar
             </button>
         </div>
     );
