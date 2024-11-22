@@ -19,7 +19,6 @@ class NoteListCreate(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
-
 class NoteDelete(generics.DestroyAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
