@@ -169,10 +169,13 @@ La API backend está desarrollada con Django REST Framework y utiliza autenticac
 ---
 ##Capturas de Pantalla
 
-![Texto alternativo]()
-![Texto alternativo](ruta/a/tu/imagen)
-![Texto alternativo](ruta/a/tu/imagen)
-![Texto alternativo](ruta/a/tu/imagen)
+![Ventana de Registro](frontend/src/assets/registro.png)
+
+![Ventana de Acceso](frontend/src/assets/acceso.png)
+
+![Ventana de Crear Nota](frontend/src/assets/crearnota.png)
+
+![Ventana de Actualizar Nota](frontend/src/assets/editarnota.png)
 
 ---
 Licencia
