@@ -7,6 +7,7 @@ function Home() {
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
+    const [editingNote, setEditingNote] = useState(null);
 
     useEffect(() => {
         getNotes();
@@ -34,28 +35,49 @@ function Home() {
             .catch((error) => alert(error));
     };
 
-    const createNote = (e) => {
+    const createOrUpdateNote = (e) => {
         e.preventDefault();
-        api
-            .post("/api/notes/", { content, title })
-            .then((res) => {
-                if (res.status === 201) alert("Note created!");
-                else alert("Failed to make note.");
-                getNotes();
-            })
-            .catch((err) => alert(err));
+        if (editingNote) {
+            // Update existing note
+            api
+                .put(`/api/notes/update/${editingNote.id}/`, { content, title })
+                .then((res) => {
+                    if (res.status === 200) alert("Note updated!");
+                    else alert("Failed to update note.");
+                    setEditingNote(null); // Reset editing state
+                    getNotes();
+                })
+                .catch((err) => alert(err));
+        } else {
+            // Create new note
+            api
+                .post("/api/notes/", { content, title })
+                .then((res) => {
+                    if (res.status === 201) alert("Note created!");
+                    else alert("Failed to make note.");
+                    getNotes();
+                })
+                .catch((err) => alert(err));
+        }
     };
+
+    const startEditing = (note) => {
+        setEditingNote(note);
+        setTitle(note.title);
+        setContent(note.content);
+    };
+
 
     return (
         <div>
             <div>
                 <h2>Notes</h2>
                 {notes.map((note) => (
-                    <Note note={note} onDelete={deleteNote} key={note.id} />
+                    <Note note={note} onDelete={deleteNote} onEdit={startEditing} key={note.id} />
                 ))}
             </div>
-            <h2>Create a Note</h2>
-            <form onSubmit={createNote}>
+            <h2>{editingNote ? "Edit Note" : "Create a Note"}</h2>
+            <form onSubmit={createOrUpdateNote}>
                 <label htmlFor="title">Title:</label>
                 <br />
                 <input
@@ -76,7 +98,19 @@ function Home() {
                     onChange={(e) => setContent(e.target.value)}
                 ></textarea>
                 <br />
-                <input type="submit" value="Submit"></input>
+                <input type="submit" value={editingNote ? "Update" : "Submit"}></input>
+                {editingNote && (
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setEditingNote(null);
+                            setTitle("");
+                            setContent("");
+                        }}
+                    >
+                        Cancel
+                    </button>
+                )}
             </form>
         </div>
     );
