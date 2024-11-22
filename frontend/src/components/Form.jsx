@@ -11,7 +11,7 @@ function Form({ route, method }) {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const name = method === "login" ? "Login" : "Register";
+    const name = method === "login" ? "Acceso" : "Registro";
 
     const handleSubmit = async (e) => {
         setLoading(true);
@@ -41,14 +41,14 @@ function Form({ route, method }) {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
+                placeholder="Usuario"
             />
             <input
                 className="form-input"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
+                placeholder="Contraseña"
             />
             {loading && <LoadingIndicator />}
             <button className="form-button" type="submit">
