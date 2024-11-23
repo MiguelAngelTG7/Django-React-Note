@@ -77,7 +77,7 @@ La API backend está desarrollada con Django REST Framework y utiliza autenticac
    ```bash
     python manage.py runserver
 
-### Backend
+### Frontend
 
 1. Navega al directorio de frontend:
    ```bash
